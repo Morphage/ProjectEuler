@@ -1,11 +1,20 @@
 from math import sqrt
+from math import floor
 
 def is_prime(n):
-    if n % 2 == 0 and n > 2: 
-        return False
-    for i in range(3, int(sqrt(n)) + 1, 2):
-        if n % i == 0:
-            return False
+    if n == 1: return False
+    if n < 4: return True
+    if n % 2 == 0: return False
+    if n < 9: return True
+    if n % 3 == 0: return False
+    
+    r = floor(sqrt(n))
+    f = 5
+    while f <= r:
+        if n % f == 0: return False
+        if n % (f+2) == 0: return False
+        f += 6
+    
     return True
 
 def next_prime(n):
